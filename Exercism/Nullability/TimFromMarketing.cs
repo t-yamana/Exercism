@@ -4,7 +4,7 @@ static class Badge
 {
   public static string Print(int? id, string name, string? department)
   {
-    string? prefix = id != null ? "[" + id.ToString() + "]" : null;
+    string? prefix = id.HasValue ? $"[{id.ToString()}]" : null;
     string suffix = (department ?? "OWNER").ToUpper();
 
     var badges = new List<string?> { prefix, name, suffix };
