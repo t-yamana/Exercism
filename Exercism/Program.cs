@@ -6,10 +6,9 @@ namespace Exercism
   {
     static void Main(string[] args)
     {
-      var test = Badge.Print(3, "abe", "abe");
+      var times = SavingsAccount.YearsBeforeDesiredBalance(100.0m, 125.80m);
 
-      // Console.WriteLine("Hello World!");
-      Console.WriteLine(test);
+      Console.WriteLine(times);
     }
   }
 }
