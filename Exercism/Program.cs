@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datetimes;
+using System;
 
 namespace Exercism
 {
@@ -6,9 +7,13 @@ namespace Exercism
   {
     static void Main(string[] args)
     {
-      var times = SavingsAccount.YearsBeforeDesiredBalance(100.0m, 125.80m);
+      // var times = SavingsAccount.YearsBeforeDesiredBalance(100.0m, 125.80m);
 
-      Console.WriteLine(times);
+      var now = DateTime.Now;
+      // string message = now.ToString("M/dd/yyyy h:mm:ss tt");
+      string message = Appointment.Description(now);
+
+      Console.WriteLine(message);
     }
   }
 }
