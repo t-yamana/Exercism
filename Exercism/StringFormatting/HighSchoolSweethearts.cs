@@ -6,22 +6,21 @@ namespace Exercism.StringFormatting
   public static class HighSchoolSweethearts
   {
     public static string DisplaySingleLine(string studentA, string studentB)
-    {
-      string prior = new String(' ', 29 - studentA.Length) + studentA;
-      string lator = studentB + new String(' ', 29 - studentB.Length);
-      return $"{prior} ♡ {lator}";
-    }
+      // {"test",  5} -> "  test"
+      // {"test", -5} -> "test  "
+      => $"{studentA, 29} ♡ {studentB, -29}";
 
     public static string DisplayBanner(string studentA, string studentB)
     {
-      string heart = String.Format(
-      @"
+      // String Interpolation & Template String
+      return String.Format(
+      $@"
      ******       ******
    **      **   **      **
  **         ** **         **
 **            *            **
 **                         **
-**     {0} +  {1}    **
+**     {studentA.Trim()}  +  {studentB.Trim()}     **
  **                       **
    **                   **
      **               **
@@ -30,8 +29,7 @@ namespace Exercism.StringFormatting
            **   **
              ***
               *
-", studentA, studentB);
-      return heart;
+");
     }
 
     public static string DisplayGermanExchangeStudents(string studentA
