@@ -6,7 +6,12 @@ namespace Exercism.Strings
 {
   public static class Pangram
   {
+    const string alphabet = "abcdefghijklmnopqrstuvwxyz";
     public static bool IsPangram(string input)
+    {
+      return alphabet.All(c => input.ToLower().Contains(c));
+    }
+    public static bool IsPangram1(string input)
     {
       var chars = new HashSet<char>();
 
@@ -15,12 +20,8 @@ namespace Exercism.Strings
       foreach (Match m in matches)
       {
         chars.UnionWith(m.Value.ToCharArray());
-        
-        // Bad
-        // m.Value.ToCharArray().Select(c => chars.Add(c));
       }
-
-      return chars.Count == "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Length;
+      return chars.Count == alphabet.Length;
     }
   }
 }
