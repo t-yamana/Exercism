@@ -30,28 +30,13 @@ namespace Exercism.SwitchExpressions
 
     public Outlook ShortTermOutlook
     {
-      get
+      get => reading.Temperature switch
       {
-        if (reading.Equals(new Reading()))
-        {
-          throw new ArgumentException();
-        }
-        else
-        {
-          if (reading.Pressure < 10m && reading.Temperature < 30m)
-          {
-            return Outlook.Cool;
-          }
-          else if (reading.Temperature > 50)
-          {
-            return Outlook.Good;
-          }
-          else
-          {
-            return Outlook.Warm;
-          }
-        }
-      }
+        _ when reading.Equals(new Reading()) => throw new ArgumentException(),
+        > 50 => Outlook.Good,
+        < 30m when reading.Pressure < 10m => Outlook.Cool,
+        _ => Outlook.Warm,
+      };
     }
 
     public Outlook LongTermOutlook
