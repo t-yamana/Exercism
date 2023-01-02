@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Exercism.Sets
+namespace Exercism.Equality
 {
   public class FacialFeatures
   {
     public string EyeColor { get; }
     public decimal PhiltrumWidth { get; }
     public FacialFeatures(string eyeColor, decimal philtrumWidth) =>
-      (this.EyeColor, this.PhiltrumWidth) = (eyeColor, philtrumWidth);
+      (EyeColor, PhiltrumWidth) = (eyeColor, philtrumWidth);
 
     /// <summary> 値比較のため用です
     ///           参照比較は"=="を使用して下さい
     /// </summary>
     public override bool Equals(object? obj)
     {
-      if (obj == null || this.GetType() != obj.GetType()) {
+      // if (obj is FacialFeatures ff) も可
+      if (obj == null || GetType() != obj.GetType())
+      {
         return false;
       }
-      return this.GetHashCode() == obj.GetHashCode();
+      return GetHashCode() == obj.GetHashCode();
     }
 
     public override int GetHashCode()
@@ -33,17 +35,18 @@ namespace Exercism.Sets
     public string Email { get; }
     public FacialFeatures FacialFeatures { get; }
     public Identity(string email, FacialFeatures facialFeatures) =>
-      (this.Email, this.FacialFeatures) = (email, facialFeatures);
+      (Email, FacialFeatures) = (email, facialFeatures);
 
     /// <summary> 値比較のため用です
     ///           参照比較は"=="を使用して下さい
     /// </summary>
     public override bool Equals(object? obj)
     {
-      if (obj == null || this.GetType() != obj.GetType()) {
+      if (obj == null || GetType() != obj.GetType())
+      {
         return false;
       }
-      return this.GetHashCode() == obj.GetHashCode();
+      return GetHashCode() == obj.GetHashCode();
     }
     public override int GetHashCode()
     {
@@ -60,7 +63,7 @@ namespace Exercism.Sets
     {
       return faceA.Equals(faceB);
     }
-    public bool IsAdmin(Identity identity) => identity.Equals(_admin); 
+    public bool IsAdmin(Identity identity) => identity.Equals(_admin);
     public bool Register(Identity identity)
     {
       return registered.Add(identity.GetHashCode());
