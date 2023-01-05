@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Exercism.Equality
+namespace ExercismTDD.Equality
 {
   public struct Coord
   {
