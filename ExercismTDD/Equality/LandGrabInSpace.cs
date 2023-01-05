@@ -12,27 +12,31 @@ namespace Exercism.Equality
       Y = y;
     }
 
+    public double DistWithOther(Coord other)
+    {
+      return Math.Pow((this.X - other.X), 2) + Math.Pow((this.Y - other.Y), 2);
+    }
+
     public ushort X { get; }
     public ushort Y { get; }
   }
 
   public struct Plot
   {
-    public HashSet<Coord> Coords { get; private set; }
+    public Coord[] Coords { get; private set; }
 
     public Plot(Coord c1, Coord c2, Coord c3, Coord c4)
     {
-      Coords = new Coord[] { c1, c2, c3, c4 }.ToHashSet();
+      Coords = new Coord[] { c1, c2, c3, c4 };
     }
 
-    public int GetLength()
+    public double GetLength()
     {
-      int total = 0;
-      var cs = Coords.GetEnumerator();
-      while (cs.MoveNext())
-      {
-        total += (cs.Current.X + cs.Current.Y);
-      }
+      double total = 0;
+      total += Coords[0].DistWithOther(Coords[1]);
+      total += Coords[1].DistWithOther(Coords[2]);
+      total += Coords[2].DistWithOther(Coords[3]);
+      total += Coords[3].DistWithOther(Coords[0]);
       return total;
     }
 
@@ -40,7 +44,12 @@ namespace Exercism.Equality
     {
       if (other is Plot plot)
       {
-        return Coords.All(c => plot.Coords.Contains(c));
+        bool res = true;
+        for (int i = 0; i < Coords.Length; i++)
+        {
+          res = res && Coords[i].Equals(plot.Coords[i]);
+        }
+        return res;
       }
       else
       {
@@ -51,7 +60,8 @@ namespace Exercism.Equality
 
   public class ClaimsHandler
   {
-    List<Plot> plots = new List<Plot>();  // abberiviate style
+    List<Plot> plots = new List<Plot>();
+
     public void StakeClaim(Plot plot)
     {
       // parameter cannot be null (parameter source)
@@ -60,16 +70,12 @@ namespace Exercism.Equality
 
     public bool IsClaimStaked(Plot plot)
     {
-      foreach (var p in plots)
-      {
-        if (p.Equals(plot)) return true;
-      }
-      return false;
+      return plots.Contains(plot);
     }
 
     public bool IsLastClaim(Plot plot)
     {
-      return plots.LastOrDefault().Equals(plot) ? true : false;
+      return plots.LastOrDefault().Equals(plot);
     }
 
     public Plot GetClaimWithLongestSide()
