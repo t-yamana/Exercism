@@ -1,9 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Exercism.Equality;
 using System.Collections.Generic;
 
-namespace ExercismTest
+using Exercism.Equality;
+
+namespace ExercismTest.Equality
 {
   [TestClass]
   public class LandGrabInSpace
