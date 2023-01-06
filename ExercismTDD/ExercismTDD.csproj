@@ -45,8 +45,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Equality\Faceid2.cs" />
     <Compile Include="Equality\LandGrabInSpace.cs" />
-    <Compile Include="ExtensionMethods\Accumulate.cs" />
-    <Compile Include="ExtensionMethods\LogAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

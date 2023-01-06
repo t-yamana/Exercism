@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ExercismTDD.ExtensionMethods
+namespace Exercism.ExtensionMethods
 {
   public static class LogAnalysis
   {
