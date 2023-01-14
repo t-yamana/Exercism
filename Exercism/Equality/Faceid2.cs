@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ExercismTDD.Equality
+namespace Exercism.Equality
 {
   public class FacialFeatures
   {
