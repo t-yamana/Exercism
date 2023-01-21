@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Exercism.IfStatements
 {
@@ -11,12 +12,7 @@ namespace Exercism.IfStatements
         throw new ArgumentException();
       }
 
-      int hamdist = 0;
-      for (int i = 0; i < firstStrand.Length; i++)
-      {
-        hamdist += firstStrand[i] == secondStrand[i] ? 0 : 1;
-      }
-      return hamdist;
+      return firstStrand.Zip(secondStrand).Count(tup => tup.First != tup.Second);
     }
   }
 }
