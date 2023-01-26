@@ -1,30 +1,31 @@
-﻿using System;
-
-static class AssemblyLine
+﻿namespace Exercism.Numbers
 {
-  private static readonly int _defaultProduce = 221;
-
-  public static double SuccessRate(int speed)
+  static class AssemblyLine
   {
-    return speed switch
+    private static readonly int _defaultProduce = 221;
+
+    public static double SuccessRate(int speed)
     {
-      // Relational Patterns C#9
-      <=0 => 0.0,
-      <=4 => 1.0,
-      <=8 => 0.9,
-      <=9 => 0.8,
-      _ => 0.77
-    };
-  }
+      return speed switch
+      {
+        // Relational Patterns C#9
+        <= 0 => 0.0,
+        <= 4 => 1.0,
+        <= 8 => 0.9,
+        <= 9 => 0.8,
+        _ => 0.77
+      };
+    }
 
-  public static double ProductionRatePerHour(int speed)
-  {
-    return SuccessRate(speed) * _defaultProduce * speed;
-  }
+    public static double ProductionRatePerHour(int speed)
+    {
+      return SuccessRate(speed) * _defaultProduce * speed;
+    }
 
-  public static int WorkingItemsPerMinute(int speed)
-  {
-    return (int)(ProductionRatePerHour(speed) / 60);
+    public static int WorkingItemsPerMinute(int speed)
+    {
+      return (int)(ProductionRatePerHour(speed) / 60);
+    }
   }
 }
 
