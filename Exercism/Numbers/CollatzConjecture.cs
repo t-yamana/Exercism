@@ -6,15 +6,22 @@ namespace Exercism.Numbers
   {
     public static int Steps(int number)
     {
-      if (number <= 0) throw new ArgumentOutOfRangeException();
-
-      int step = 0;
-      while (number != 1)
+      if (number <= 0)
       {
-        number = number % 2 == 0 ? (number / 2) : (3 * number + 1);
-        step++;
+        throw new ArgumentOutOfRangeException("number must be non-negative");
       }
-      return step;
+      else if(number == 1)
+      {
+        return 0;  // count only if Steps() called
+      }
+      else if(number % 2 == 0)  // Even
+      {
+        return 1 + Steps(number / 2);
+      }
+      else  // Odd
+      {
+        return 1 + Steps(3 * number + 1);
+      }
     }
   }
 }
