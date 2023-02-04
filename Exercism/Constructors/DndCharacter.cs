@@ -5,7 +5,7 @@ namespace Exercism.Constructor
 {
   public class DndCharacter
   {
-    static Random rnd = new Random();
+    static Random rnd = new Random(DateTime.Now.Millisecond);
 
     public int Strength { get; }
     public int Dexterity { get; }
@@ -31,7 +31,7 @@ namespace Exercism.Constructor
     public static int Ability()
     {
       int[] Dies = { RollDice(), RollDice(), RollDice(), RollDice() };
-      return Dies.OrderBy(die => -1 * die).Take(3).Sum();
+      return Dies.OrderByDescending(die => die).Take(3).Sum();
     }
 
     public static DndCharacter Generate()
