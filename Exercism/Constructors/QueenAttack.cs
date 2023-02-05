@@ -10,34 +10,6 @@ namespace Exercism.Constructor
       Column = column;
     }
 
-    public Queen ComeNearAxis1()
-    {
-      int row = this.Row;
-      int col = this.Column;
-      while (row > 0 && col > 0)
-      {
-        row--;
-        col--;
-      }
-      return new Queen(row, col);
-    }
-    public Queen ComeNearAxis2()
-    {
-      int row = this.Row;
-      int col = this.Column;
-      while (row > 0 && col < QueenAttack.BoardRng)
-      {
-        row--;
-        col++;
-      }
-      return new Queen(row, col);
-    }
-
-    public bool SamePosition(Queen other)
-    {
-      return this.Row == other.Row && this.Column == other.Column;
-    }
-
     public int Row { get; }
     public int Column { get; }
   }
@@ -51,8 +23,10 @@ namespace Exercism.Constructor
 
     public static Queen Create(int row, int column)
     {
-      if (row < 0 || column < 0) throw new ArgumentOutOfRangeException();
-      if (BoardRng < row || BoardRng < column) throw new ArgumentOutOfRangeException();
+      if (row < 0 || BoardRng < row)
+        throw new ArgumentOutOfRangeException();
+      if (column < 0 || BoardRng < column)
+        throw new ArgumentOutOfRangeException();
 
       return new Queen(row, column);
     }
@@ -64,9 +38,7 @@ namespace Exercism.Constructor
 
     static bool IsSameDiagonal(Queen q1, Queen q2)
     {
-      bool Check1 = q1.ComeNearAxis1().SamePosition(q2.ComeNearAxis1());
-      bool Check2 = q1.ComeNearAxis2().SamePosition(q2.ComeNearAxis2());
-      return Check1 || Check2;
+      return Math.Abs(q1.Row - q2.Row) == Math.Abs(q1.Column - q2.Column);
     }
   }
 }
