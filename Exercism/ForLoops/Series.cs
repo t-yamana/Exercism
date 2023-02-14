@@ -7,18 +7,11 @@ namespace Exercism.ForLoops
   {
     public static string[] Slices(string numbers, int sliceLength)
     {
-      int patterns = numbers.Count() - sliceLength + 1;
-      if (patterns <= 0 || sliceLength <= 0)
-      {
-        throw new ArgumentException();
-      }
-
-      var answers = new string[patterns];
-      for (int i = 0; i < patterns; i++)
-      {
-        answers[i] = new string(numbers.Take(new Range(i, i + sliceLength)).ToArray());
-      }
-      return answers;
+      return (sliceLength < 1 || numbers.Length < sliceLength) ?
+        throw new ArgumentException() :
+        Enumerable.Range(0, numbers.Length - sliceLength + 1)
+          .Select(i => numbers.Substring(i, sliceLength))
+          .ToArray();
     }
   }
 }
