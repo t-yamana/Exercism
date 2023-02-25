@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lists
+namespace Exercism.Lists
 {
   public static class Languages
   {
