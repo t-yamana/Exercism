@@ -4,17 +4,20 @@ namespace Exercism.SwitchStatements
 {
   public static class BeerSong
   {
-    public static string Recite(int startBottles, int takeDown)
+    public static string Recite(int startBottles, int takeDown) =>
+      Speech(startBottles)
+      + (takeDown - 1 > 0 ?
+        "\n\n" + Recite(startBottles - 1, takeDown - 1)
+        : String.Empty);
+
+    static string Speech(int bottles)
     {
-      string st_bt = Bottle(startBottles);
-      string nx_bt = Bottle(startBottles > 0 ? startBottles - 1 : 99);
+      string st_bt = Bottle(bottles);
+      string nx_bt = Bottle(bottles > 0 ? bottles - 1 : 99);
 
       return (
         $"{st_bt} of beer on the wall, {st_bt.ToLower()} of beer.\n"
-        + $"{BottleSentence(startBottles)} {nx_bt.ToLower()} of beer on the wall."
-        + (takeDown-1 > 0 ?
-          "\n\n" + Recite(startBottles-1, takeDown-1)
-          : String.Empty)
+        + $"{BottleSentence(bottles)} {nx_bt.ToLower()} of beer on the wall."
       );
     }
 
