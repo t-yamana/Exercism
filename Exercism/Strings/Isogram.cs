@@ -9,7 +9,7 @@ namespace Exercism.Strings
     public static bool IsIsogram(string word)
     {
       // NOT isAlpha()
-      IEnumerable<Char> chars = word.ToLower().Where(c => Char.IsLetter(c));
+      IEnumerable<Char> chars = word.ToLower().Where(Char.IsLetter);
       return chars.Count() == chars.Distinct().Count();
     }
   }
