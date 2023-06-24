@@ -70,6 +70,5 @@ namespace Exercism.Test.IfStatements
       Assert.Equal(5, Darts.Score(0.5, -4));
     }
   }
-
-
 }
+
