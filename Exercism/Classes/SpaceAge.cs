@@ -24,14 +24,14 @@ namespace Exercism.Classes
       this._sec = seconds;
     }
 
-    public double OnEarth()   => _sec / (_sidereal["Earth"] * _earth_sec);
-    public double OnMercury() => _sec / (_sidereal["Mercury"] * _earth_sec);
-    public double OnVenus()   => _sec / (_sidereal["Venus"] * _earth_sec);
-    public double OnMars()    => _sec / (_sidereal["Mars"] * _earth_sec);
-    public double OnJupiter() => _sec / (_sidereal["Jupiter"] * _earth_sec);
-    public double OnSaturn()  => _sec / (_sidereal["Saturn"] * _earth_sec);
-    public double OnUranus()  => _sec / (_sidereal["Uranus"] * _earth_sec);
-    public double OnNeptune() => _sec / (_sidereal["Neptune"] * _earth_sec);
+    public double OnEarth()   => _sec / _earth_sec;
+    public double OnMercury() => OnEarth() / _sidereal["Mercury"];
+    public double OnVenus()   => OnEarth() / _sidereal["Venus"];
+    public double OnMars()    => OnEarth() / _sidereal["Mars"];
+    public double OnJupiter() => OnEarth() / _sidereal["Jupiter"];
+    public double OnSaturn()  => OnEarth() / _sidereal["Saturn"];
+    public double OnUranus()  => OnEarth() / _sidereal["Uranus"];
+    public double OnNeptune() => OnEarth() / _sidereal["Neptune"];
   }
 }
 
