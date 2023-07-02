@@ -1,63 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Exercism.Enums
 {
   public enum Plant
   {
-    Clover   = 67,
-    Grass    = 71,
-    Radishes = 82,
-    Violets  = 86,
+    Clover = 'C',
+    Grass = 'G',
+    Radishes = 'R',
+    Violets = 'V',
   }
 
   public class KindergartenGarden
   {
-    string[] students;
+    string _diagram;
 
     public KindergartenGarden(string diagram)
     {
-      var lines = diagram.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-      var studentsCnt = lines[0].Length / 2;
-      students = new string[studentsCnt];
-
-      for (int i=0; i < lines[0].Length/2; i++)
-      {
-        var studentSet = lines[0].Substring(i*2, 2) + lines[1].Substring(i*2, 2);
-        students[i] = studentSet;
-      }
+      this._diagram = diagram;
     }
 
     public IEnumerable<Plant> Plants(string student)
     {
-      int idx = SearchIdxForStudent(student);
-      string plantInStr = students[idx];
+      int idx = student.First() - 'A';
 
-      return ConvertToPlant(plantInStr).AsEnumerable();
-    }
-
-    int SearchIdxForStudent(string student)
-    {
-      int diff = student.First() - 'A';
-
-      if (diff < 0)
+      if (idx < 0)
         throw new ArgumentOutOfRangeException();
 
-      return diff;
-    }
-
-    Plant[] ConvertToPlant(string signs)
-    {
-      char[] keys = signs.ToCharArray();
-      Plant[] plantArray = new Plant[keys.Length];
-      for (int i = 0; i < keys.Length; i++)
+      foreach (string line in this._diagram.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries))
       {
-          plantArray[i] = (Plant)Enum.ToObject(typeof(Plant), keys[i]);
+        // IEnumerable なので可能
+        yield return (Plant)line[idx * 2];  // Enum へ変換
+        yield return (Plant)line[idx * 2 + 1];
       }
-      return plantArray;
     }
   }
 }
