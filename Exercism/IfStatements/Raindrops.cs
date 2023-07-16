@@ -20,11 +20,11 @@ namespace Exercism.IfStatements
           .Select(n => new[] { n, number / n })
           .SelectMany(x => x)  // jaggledArray
           .Distinct()
-          .Where(n => n == 3 || n == 5 || n == 7);
+          .Where(n => n == 3 || n == 5 || n == 7)
+          .Select(n => map[n])
+          .DefaultIfEmpty(number.ToString());
 
-      if (factors.Count() == 0) return number.ToString();
-
-      return string.Join("", factors.Select(n => map[n]));
+      return string.Join("", factors);
     }
   }
 }
